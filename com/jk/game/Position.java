@@ -3,8 +3,8 @@ public class Position {
     private int x;
     private int y;
 
-    Position(int p) {
-        switch (p) {
+    Position(int position) {
+        switch (position) {
             case 1:
                 x = 0;
                 y = 0;
@@ -51,7 +51,7 @@ public class Position {
                 break;
 
             default:
-                System.out.println("invalid");
+                System.out.println("invalid position:"+position);
                 break;
         }
     }
@@ -63,4 +63,11 @@ public class Position {
     public int getY() {
         return y;
     }
+
+	@Override
+	public String toString() {
+		return "Position [x=" + x + ", y=" + y + "]";
+	}
+
+    
 }

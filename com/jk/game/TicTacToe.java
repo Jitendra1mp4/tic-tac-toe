@@ -39,15 +39,12 @@ class Play {
                 System.out.println("Player 1's turn");
 //                System.out.print("enter position : ");
                 
-                Position p = new Position(sc.nextInt());
-//                game.set(p, symbolP1);
+                Position p = Generater.generate(game);
                 
-                Generater.generate(game);
+                System.out.println("position set now game is : ");
                 
                 System.out.println(game) ;
                 
-                //TODO: need to run test for player1
-                // TODO: handle generator generates x,y but test takes Position;
                 if(Test.checkResult(game,player1ID, p)) {
                     System.out.println("Player 1 WON");
                     break ;
@@ -72,7 +69,7 @@ class Play {
             }
 
             i++;
-        } while (i < 10);
+        } while (i < 9);
 
         System.out.println("Game Over!");
         sc.close();
