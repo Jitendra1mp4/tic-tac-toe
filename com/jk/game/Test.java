@@ -1,86 +1,56 @@
 package com.jk.game;
 
 public class Test {
-	
 
 	
-	
-	
-	
-	
-	
-	
-	
-	
-  public static boolean checkResult(Game game ,int playerID, Position p) {
 
-      if (playerID != 1 && playerID != 2) {
-          System.out.println("invalid player id");
-          return false;
-      }
+	//supposed to called after updating pseudo state, to test whether that will result in WIN in NEXT INN.
+	public static boolean willAIWonInNext(Game game, Position position) {
 
-      DiagonalSum d = game.getDiagonalSum();
+		final DiagonalSum diagonalSum = game.getDiagonalSum();
 
-      if (playerID == 1) {
-          return (
-                     game.getRowSum(p.getX()) == Game.WINNING_SUM_PLAYER_1  // TODO:replace with constants.Winn
-                  || game.getColSum(p.getY()) == Game.WINNING_SUM_PLAYER_1
-                  || d.sumOfD1 == Game.WINNING_SUM_PLAYER_1
-                  || d.sumOfD2 == Game.WINNING_SUM_PLAYER_1
-                 );
-      } else {
-          return (
-                     game.getRowSum(p.getX()) == Game.WINNING_SUM_PLAYER_2
-                  || game.getColSum(p.getY()) == Game.WINNING_SUM_PLAYER_2
-                  || d.sumOfD1 == Game.WINNING_SUM_PLAYER_2
-                  || d.sumOfD2 == Game.WINNING_SUM_PLAYER_2
-                  );
-      }
+		final boolean winningCondition1 = game.getRowSum(position.getX()) == Constants.NEXT_PLAYER_AI_WINNIG_SUM; // false 
+		final boolean winningCondition2 = game.getColSum(position.getY()) == Constants.NEXT_PLAYER_AI_WINNIG_SUM; // false
+		final boolean winningCondition3 = diagonalSum.sumOfD1 == Constants.NEXT_PLAYER_AI_WINNIG_SUM;      // true
+		final boolean winningCondition4 = diagonalSum.sumOfD2 == Constants.NEXT_PLAYER_AI_WINNIG_SUM;	   // false
 
-  }
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-//   public static boolean checkResult(int playerID, Position p) {
-//
-//       if (playerID != 1 && playerID != 2) {
-//           System.out.println("invalid player id");
-//           return false;
-//       }
-//
-//       DiagonalSum d = getDiagonalSum();
-//
-//       if (playerID == 1) {
-//           return (
-//                      getRowSum(p.getX()) == Game.WINNING_SUM_PLAYER_1
-//                   || getColSum(p.getY()) == Game.WINNING_SUM_PLAYER_1
-//                   || d.sumOfD1 == WINNING_SUM_PLAYER_1
-//                   || d.sumOfD2 == WINNING_SUM_PLAYER_1
-//                  );
-//       } else {
-//           return (
-//                      getRowSum(p.getX()) == Game.WINNING_SUM_PLAYER_2
-//                   || getColSum(p.getY()) == Game.WINNING_SUM_PLAYER_2
-//                   || d.sumOfD1 == WINNING_SUM_PLAYER_2
-//                   || d.sumOfD2 == WINNING_SUM_PLAYER_2
-//                   );
-//       }
-//
-//   }
+		
+		final boolean winningCondtions[] = {
+				winningCondition1, 
+				winningCondition2,
+				winningCondition3,
+				winningCondition4
+		} ;
+		
+
+		int numberOfWinningConditions = 0 ;
+		
+	     for (boolean wc : winningCondtions) {
+	    	 if (wc) numberOfWinningConditions++ ;
+	     }
+		
+		return numberOfWinningConditions >= 2;
+	}
+
+	//supposed to called after updating pseudo or real state, to test whether playerID WON
+	public static boolean won(Game game, int playerID, Position p) {
+
+		final int rowSum = game.getRowSum(p.getX())  ;
+		final int colSum =  game.getColSum(p.getY()) ;
+		final DiagonalSum diagonalSum = game.getDiagonalSum();
+		
+		if (playerID == 1) {
+			return (rowSum == Constants.PLAYER_AI_WINNIG_SUM // TODO:replace with constants.Winn
+					|| colSum == Constants.PLAYER_AI_WINNIG_SUM
+					|| diagonalSum.sumOfD1 == Constants.PLAYER_AI_WINNIG_SUM
+					|| diagonalSum.sumOfD2 == Constants.PLAYER_AI_WINNIG_SUM);
+		} else {
+			return (rowSum == Constants.PLAYER_HUMAN_WINNING_SUM
+					|| colSum == Constants.PLAYER_HUMAN_WINNING_SUM
+					|| diagonalSum.sumOfD1 == Constants.PLAYER_HUMAN_WINNING_SUM
+					|| diagonalSum.sumOfD2 == Constants.PLAYER_HUMAN_WINNING_SUM);
+		}
+
+	}
+
 }

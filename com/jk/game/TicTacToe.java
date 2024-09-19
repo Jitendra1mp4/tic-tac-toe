@@ -3,8 +3,14 @@ import java.util.Scanner;
 
 public class TicTacToe {
 
+	
     public static void main(String args[]) {
-        new Play();
+
+//    	boolean wantToPlay = true;
+//    	while(wantToPlay) {
+    		System.out.println("here is new game :)");
+    		new Play();
+//    	}
     }
 }
 
@@ -13,10 +19,10 @@ public class TicTacToe {
 
 class Play {
 	
-	private final int player1ID = Constants.player1 ;
-	private final int player2ID = Constants.player2 ;
-	final int symbolP1 = Constants.MY_MARK;
-	final int symbolP2 = Constants.OPPONENT_MARK;
+	private final int player1ID = Constants.PLAYER_AI ;
+	private final int player2ID = Constants.PLAYER_HUMAN ;
+	final int symbolP1 = Constants.PLAYER_AI_MARK;
+	final int symbolP2 = Constants.PLAYER_HUMAN_MARK;
 
     public Play() {
 
@@ -25,45 +31,46 @@ class Play {
 
         Game game = new Game();
 
-        System.out.println("Welcome:\nSymbol for player1 : " + symbolP1);
-        System.out.println("Symbol for player1 : " + symbolP2);
+        System.out.println("Symbol for PLAYER_AI : " + symbolP1);
+        System.out.println("Symbol for PLAYER_AI : " + symbolP2);
 
         System.out.println("initial game state:");
         System.out.println(game) ;
 
+        
         int i = 0;
-
         do {
 
             if (i % 2 == 0) { 
-                System.out.println("Player 1's turn");
-//                System.out.print("enter position : ");
+                System.out.println("AI's turn");
+          
+                Generater generater = new Generater();
+                Position p = generater.generate(game);
                 
-                Position p = Generater.generate(game);
+                game.updateState(p, symbolP1);
                 
-                System.out.println("position set now game is : ");
-                
+                System.out.println("position set, now game is : ");
                 System.out.println(game) ;
                 
-                if(Test.checkResult(game,player1ID, p)) {
-                    System.out.println("Player 1 WON");
+                if(Test.won(game,player1ID, p)) {
+                    System.out.println("AI WON!");
                     break ;
                 }
             }
 
             else { // for player 2
-                System.out.println("Player 2's turn");
+                System.out.println("Your turn");
                 System.out.print("enter position : ");
                 
                 
                 Position p = new Position(sc.nextInt());
-                game.set(p, symbolP2);
+                game.updateState(p, symbolP2);
                 
                 
                 System.out.println(game) ;
                 
-                if(Test.checkResult(game,player2ID, p)) {
-                    System.out.println("Player 2 WON");
+                if(Test.won(game,player2ID, p)) {
+                    System.out.println("YOU WON!");
                     break ;
                 }
             }
@@ -71,6 +78,7 @@ class Play {
             i++;
         } while (i < 9);
 
+        sc.nextLine();
         System.out.println("Game Over!");
         sc.close();
     }
