@@ -5,7 +5,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
 
-public class Generater {
+import com.jk.game.ds.Position;
+
+public class Generator {
 
 
 
@@ -18,7 +20,7 @@ public class Generater {
 	private Stack<Position> somethingElse ;
 
 
-	public Generater() {
+	public Generator() {
 		winningPositionList = new Stack<Position>() ;
 		preventivePositionList = new Stack<Position>();
 		betterPositionList = new Stack<Position>() ;
@@ -29,7 +31,7 @@ public class Generater {
 	
 	public Position generate(Game game) {
 		
-		System.out.println("Generater.generate()");
+		System.out.println("Generator.generate()");
 		
 		categorizePositionsList(generatePositionList(game) , game.state);
 
@@ -37,24 +39,10 @@ public class Generater {
 	}
 
 
-//	public static Position generate(Game game) {
-//		System.out.println("generating position...");
-//		Position position ;
-//
-//		for(int cell = 1 ; cell <= NUMBER_OF_CELLS ;cell++) {
-//			position = new Position(cell) ;
-//
-//			if (game.state[position.getX()][position.getY()] == Game.INIT_VAL) {
-//				return position;
-//			}
-//		}
-//		System.out.println("No empty position found setting position=null..");
-//		position = null ;
-//		return position;
-//	}
+
 
 	private List<Position> generatePositionList(Game game) {
-		System.out.println("Generater.generatePositionList()");
+		System.out.println("Generator.generatePositionList()");
 
 		Position position ;
 
@@ -73,11 +61,8 @@ public class Generater {
 
 
 
-
-
-
 	public void categorizePositionsList(List<Position> positionList, final int currentState[][]) {
-		System.out.println("Generater.categorizePositionsList()");
+		System.out.println("Generator.categorizePositionsList()");
 
 		// make a new game
 		Game game = new Game() ;
@@ -97,7 +82,6 @@ public class Generater {
 
 			
 			// if human can win by marking same position it would be  preventivePosition
-
 			game.updateStateForced(position, Constants.PLAYER_HUMAN_MARK);			
 			if (Test.won(game, Constants.PLAYER_HUMAN, position)) {
 				preventivePositionList.push(position) ; continue ;
@@ -107,7 +91,6 @@ public class Generater {
 			game.updateStateForced(position, Constants.PLAYER_AI_MARK);
 			if (Test.willAIWonInNext(game,position)) {
 				betterPositionList.push(position) ; continue ;
-				/// TODO: handle future winning position for now it is something else
 			}
 			else{
 				somethingElse.push(position) ;
@@ -116,10 +99,9 @@ public class Generater {
 	}
 	
 	
-	
 	public Position getBestPosition() 
 	{
-		System.out.println("Generater.getBestPosition()");
+		System.out.println("Generator.getBestPosition()");
 		
 		
 		System.out.println("winningPositionList:"+winningPositionList);

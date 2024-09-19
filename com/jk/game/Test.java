@@ -1,5 +1,8 @@
 package com.jk.game;
 
+import com.jk.game.ds.DiagonalSum;
+import com.jk.game.ds.Position;
+
 public class Test {
 
 	

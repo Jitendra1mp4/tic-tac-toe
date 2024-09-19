@@ -1,6 +1,8 @@
 package com.jk.game;
 import java.util.Scanner;
 
+import com.jk.game.ds.Position;
+
 public class TicTacToe {
 
 	
@@ -44,7 +46,7 @@ class Play {
             if (i % 2 == 0) { 
                 System.out.println("AI's turn");
           
-                Generater generater = new Generater();
+                Generator generater = new Generator();
                 Position p = generater.generate(game);
                 
                 game.updateState(p, symbolP1);
