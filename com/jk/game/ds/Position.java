@@ -1,9 +1,9 @@
-package com.jk.game;
+package com.jk.game.ds;
 public class Position {
     private int x;
     private int y;
 
-    Position(int position) {
+    public Position(int position) {
         switch (position) {
             case 1:
                 x = 0;
