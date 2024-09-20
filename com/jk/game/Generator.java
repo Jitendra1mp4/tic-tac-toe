@@ -11,15 +11,9 @@ public class Generator {
 
 	private static final int NUMBER_OF_CELLS = 9;
 
-	private Stack<Position> winningPositionList;
-	private Stack<Position> preventivePositionList;
-	private Stack<Position> betterPositionList;
 	private Stack<Position> somethingElse;
 
 	public Generator() {
-		winningPositionList = new Stack<Position>();
-		preventivePositionList = new Stack<Position>();
-		betterPositionList = new Stack<Position>();
 		somethingElse = new Stack<Position>();
 	}
 
@@ -27,9 +21,7 @@ public class Generator {
 
 		// System.out.println("Generator.generate()");
 
-		categorizePositionsList(generatePositionList(game), game.state);
-
-		return getBestPosition(game);
+		return getBestPosition(generatePositionList(game), game.state);
 	}
 
 	private List<Position> generatePositionList(Game game) {
@@ -49,7 +41,7 @@ public class Generator {
 		return positionList;
 	}
 
-	public void categorizePositionsList(List<Position> positionList, final int currentState[][]) {
+	public Position getBestPosition(List<Position> positionList, final int currentState[][]) {
 		// System.out.println("Generator.categorizePositionsList()");
 
 		// make a new game
@@ -65,53 +57,63 @@ public class Generator {
 			// if by applying that position AI wins it is winning position
 			game.updateState(position, Constants.PLAYER_AI_MARK);
 			if (Test.won(game, Constants.PLAYER_AI, position)) {
-				winningPositionList.push(position);
-				continue;
+				return position ;
 			}
 
 			// if human can win by marking same position it would be preventivePosition
 			game.updateStateForced(position, Constants.PLAYER_HUMAN_MARK);
 			if (Test.won(game, Constants.PLAYER_HUMAN, position)) {
-				preventivePositionList.push(position);
-				continue;
+				return position ;
 			}
 
-			// if by applying that position AI's win is confirm in next inn it is better
+			// if by applying position AI's win is confirm in next inn it is better
 			// position
 			game.updateStateForced(position, Constants.PLAYER_AI_MARK);
+			
 			if (Test.willAIWonInNext(game, position)) {
-				betterPositionList.push(position);
-				continue;
-			} else {
+
+				return position ;
+			} 
+			
+			else {
 				somethingElse.push(position);
 			}
 		}
-	}
-
-	private Position getBestPosition(Game game) {
-		// System.out.println("Generator.getBestPosition()");
-
-		// System.out.println("winningPositionList:"+winningPositionList);
-		// System.out.println("preventivePositionList:"+preventivePositionList);
-		// System.out.println("betterPositionList:"+betterPositionList);
-		// System.out.println("somethingElse:"+somethingElse);
-
-		if (!winningPositionList.isEmpty())
-			return winningPositionList.pop();
-		else if (!preventivePositionList.isEmpty())
-			return preventivePositionList.pop();
-		else if (!betterPositionList.isEmpty())
-			return betterPositionList.pop();
-
-		else if (!somethingElse.isEmpty()) {
-			Position p = handleSomethingElse(game);
-			return p != null ? p : somethingElse.pop();
+		
+		if (!somethingElse.isEmpty()) {
+			Position position = handleSomethingElse(game);
+			return position != null ? position : somethingElse.pop();
 		}
 
-		System.out.println("all stack are empty returning null");
+		System.out.println("All stack are empty returning null");
+		return null;
+		
+	}
+
+	
+	
+	private Position handleSomethingElse(Game game) {
+
+		if (game.numberOfCellUpdated == 2) {
+			
+			if ((game.state[2][2] == Constants.PLAYER_HUMAN_MARK))	
+				return new Position(1); 
+			
+			
+			if ((game.state[2][0] == Constants.PLAYER_HUMAN_MARK))
+				return new Position(3); 
+			
+			
+			if ((game.state[0][0] == Constants.PLAYER_HUMAN_MARK))
+				return new Position(7); 
+		}
+
 		return null;
 	}
 
+	
+	
+	
 	private static int[][] getDeepCopy(int matrix[][]) {
 		int copy[][] = new int[3][];
 
@@ -122,18 +124,5 @@ public class Generator {
 		return copy;
 	}
 
-	private Position handleSomethingElse(Game game) {
-
-		if (game.numberOfCellUpdated == 2) {
-			if ((game.state[2][2] == Constants.PLAYER_HUMAN_MARK))
-				return new Position(1); 
-			if ((game.state[2][0] == Constants.PLAYER_HUMAN_MARK))
-				return new Position(3); 
-			if ((game.state[0][0] == Constants.PLAYER_HUMAN_MARK))
-				return new Position(7); 
-		}
-
-		return null;
-	}
 
 }
