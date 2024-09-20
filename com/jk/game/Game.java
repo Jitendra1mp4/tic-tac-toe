@@ -55,8 +55,11 @@ class Game {
 	DiagonalSum getDiagonalSum() {
 		DiagonalSum digSum = new DiagonalSum();
 
-		digSum.sumOfD1 = state[0][0] + state[1][1] + state[2][2];
-		digSum.sumOfD2 = state[0][2] + state[1][1] + state[2][0];
+		final int sumOfD1 = state[0][0] + state[1][1] + state[2][2];
+		final int sumOfD2 = state[0][2] + state[1][1] + state[2][0];
+
+		digSum.setSumOfD1(sumOfD1);
+		digSum.setSumOfD2(sumOfD2);
 
 		return digSum;
 	}

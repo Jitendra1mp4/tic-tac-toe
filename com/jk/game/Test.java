@@ -14,8 +14,8 @@ public class Test {
 
 		final boolean winningCondition1 = game.getRowSum(position.getX()) == Constants.NEXT_PLAYER_AI_WINNIG_SUM; // false 
 		final boolean winningCondition2 = game.getColSum(position.getY()) == Constants.NEXT_PLAYER_AI_WINNIG_SUM; // false
-		final boolean winningCondition3 = diagonalSum.sumOfD1 == Constants.NEXT_PLAYER_AI_WINNIG_SUM;      // true
-		final boolean winningCondition4 = diagonalSum.sumOfD2 == Constants.NEXT_PLAYER_AI_WINNIG_SUM;	   // false
+		final boolean winningCondition3 = diagonalSum.getSumOfD1() == Constants.NEXT_PLAYER_AI_WINNIG_SUM;      // true
+		final boolean winningCondition4 = diagonalSum.getSumOfD2() == Constants.NEXT_PLAYER_AI_WINNIG_SUM;	   // false
 
 		
 		final boolean winningCondtions[] = {
@@ -45,13 +45,13 @@ public class Test {
 		if (playerID == 1) {
 			return (rowSum == Constants.PLAYER_AI_WINNIG_SUM // TODO:replace with constants.Winn
 					|| colSum == Constants.PLAYER_AI_WINNIG_SUM
-					|| diagonalSum.sumOfD1 == Constants.PLAYER_AI_WINNIG_SUM
-					|| diagonalSum.sumOfD2 == Constants.PLAYER_AI_WINNIG_SUM);
+					|| diagonalSum.getSumOfD1() == Constants.PLAYER_AI_WINNIG_SUM
+					|| diagonalSum.getSumOfD2() == Constants.PLAYER_AI_WINNIG_SUM);
 		} else {
 			return (rowSum == Constants.PLAYER_HUMAN_WINNING_SUM
 					|| colSum == Constants.PLAYER_HUMAN_WINNING_SUM
-					|| diagonalSum.sumOfD1 == Constants.PLAYER_HUMAN_WINNING_SUM
-					|| diagonalSum.sumOfD2 == Constants.PLAYER_HUMAN_WINNING_SUM);
+					|| diagonalSum.getSumOfD1() == Constants.PLAYER_HUMAN_WINNING_SUM
+					|| diagonalSum.getSumOfD2() == Constants.PLAYER_HUMAN_WINNING_SUM);
 		}
 
 	}
