@@ -33,13 +33,13 @@ class Play {
 
         Game game = new Game();
 
-        System.out.println("Symbol for PLAYER_AI : " + symbolP1);
-        System.out.println("Symbol for PLAYER_AI : " + symbolP2);
+        System.out.println("AI's Symbol : " + Game.PLAYER_AI_SYMBOL);
+        System.out.println("YOUR Symbol : " + Game.PLAYER_HUMAN_SYMBOL);
 
         System.out.println("initial game state:");
         System.out.println(game) ;
 
-        
+        System.out.println("AI's turn...");
         game.updateState(new Position(5), symbolP1);
                 
         System.out.println("position set, now game is : ");
@@ -49,7 +49,7 @@ class Play {
         do {
 
             if (i % 2 == 0) { 
-                System.out.println("AI's turn");
+                System.out.println("AI's turn...");
           
                 Generator generator = new Generator();
                 Position p = generator.generate(game);
@@ -67,7 +67,7 @@ class Play {
 
             else { // for player 2
                 System.out.println("Your turn");
-                System.out.print("enter position : ");
+                System.out.print("Enter position : ");
                 
                 
                 Position p = new Position(sc.nextInt());
