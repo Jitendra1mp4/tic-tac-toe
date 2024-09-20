@@ -78,7 +78,7 @@ class Play {
             }
 
             i++;
-        } while (i < 9);
+        } while (game.numberOfCellUpdated<=9);
 
         sc.nextLine();
         System.out.println("Game Over!");

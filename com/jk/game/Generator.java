@@ -35,7 +35,7 @@ public class Generator {
 		
 		categorizePositionsList(generatePositionList(game) , game.state);
 
-		return getBestPosition() ;
+		return getBestPosition(game) ;
 	}
 
 
@@ -99,7 +99,7 @@ public class Generator {
 	}
 	
 	
-	public Position getBestPosition() 
+	private Position getBestPosition(Game game) 
 	{
 		System.out.println("Generator.getBestPosition()");
 		
@@ -112,7 +112,11 @@ public class Generator {
 		if (!winningPositionList.isEmpty()) return winningPositionList.pop() ;
 		else if (!preventivePositionList.isEmpty()) return preventivePositionList.pop();
 		else if (!betterPositionList.isEmpty()) return betterPositionList.pop() ;
-		else if (!somethingElse.isEmpty()) return somethingElse.pop();
+		
+		else if (!somethingElse.isEmpty()) {
+			 Position p = handleSomethingElse(game) ;
+			 return p != null ? p : somethingElse.pop() ;
+		}
 
 		System.out.println("all stack are empty returning null");
 		return null ;
@@ -128,5 +132,16 @@ public class Generator {
 		return copy ;
 	}
 	
+	
+   private Position handleSomethingElse(Game game){
+	   
+	   // TODO: opponent at corner wisely
+	   
+	   if (game.numberOfCellUpdated == 0) return new Position(9) ;
+	   if (game.numberOfCellUpdated == 2 && game.state[0][1]==Constants.PLAYER_HUMAN_MARK) return new Position(1) ;
+//	   if (game.numberOfCellUpdated == 2 && game.state[1][1]==Constants.PLAYER_HUMAN_MARK) return new Position(6) ;
+	   System.out.println("returning null, handler accordingly");
+	   return null ;
+   }
 	
 }
