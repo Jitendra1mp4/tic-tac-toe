@@ -40,14 +40,19 @@ class Play {
         System.out.println(game) ;
 
         
-        int i = 0;
+        game.updateState(new Position(5), symbolP1);
+                
+        System.out.println("position set, now game is : ");
+        System.out.println(game) ;
+
+        int i = 1;
         do {
 
             if (i % 2 == 0) { 
                 System.out.println("AI's turn");
           
-                Generator generater = new Generator();
-                Position p = generater.generate(game);
+                Generator generator = new Generator();
+                Position p = generator.generate(game);
                 
                 game.updateState(p, symbolP1);
                 
@@ -78,7 +83,7 @@ class Play {
             }
 
             i++;
-        } while (i < 9);
+        } while (game.numberOfCellUpdated<9);
 
         sc.nextLine();
         System.out.println("Game Over!");
