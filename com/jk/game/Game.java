@@ -5,7 +5,11 @@ import com.jk.game.ds.Position;
 
 class Game {
 
+	public static final String PLAYER_HUMAN_SYMBOL = "O ";
+	public static final String PLAYER_AI_SYMBOL = "X ";
+	public static final String INITIAL_SYMBOL = "- ";
 	public static final int INIT_VAL = Constants.INITIAL_MARK;
+	
 	public int numberOfCellUpdated = 0;
 
 	int state[][] = new int[][] {
@@ -69,12 +73,15 @@ class Game {
 		String stateAsString = "";
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
+				
 				if (state[i][j] == Constants.INITIAL_MARK) {
-					stateAsString += "- ";
+					stateAsString += INITIAL_SYMBOL;
+					
 				} else if (state[i][j] == Constants.PLAYER_AI_MARK)
-					stateAsString += "X ";
+					stateAsString += PLAYER_AI_SYMBOL;
+				
 				else if (state[i][j] == Constants.PLAYER_HUMAN_MARK)
-					stateAsString += "O ";
+					stateAsString += PLAYER_HUMAN_SYMBOL;
 			}
 			stateAsString += "\n";
 		}
