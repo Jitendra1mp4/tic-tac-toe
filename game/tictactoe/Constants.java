@@ -1,4 +1,4 @@
-package com.jk.game;
+package game.tictactoe;
 
 public class Constants {
 	public final static int INITIAL_MARK = 8 ;
