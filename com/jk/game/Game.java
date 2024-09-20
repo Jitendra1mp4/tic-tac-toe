@@ -5,37 +5,35 @@ import com.jk.game.ds.Position;
 
 class Game {
 
-	public static final int INIT_VAL = Constants.INITIAL_MARK;    
-	public int numberOfCellUpdated = 0 ;
+	public static final int INIT_VAL = Constants.INITIAL_MARK;
+	public int numberOfCellUpdated = 0;
 
 	int state[][] = new int[][] {
-		{ INIT_VAL, INIT_VAL, INIT_VAL },
-		{ INIT_VAL, INIT_VAL, INIT_VAL },
-		{ INIT_VAL, INIT_VAL, INIT_VAL }
+			{ INIT_VAL, INIT_VAL, INIT_VAL },
+			{ INIT_VAL, INIT_VAL, INIT_VAL },
+			{ INIT_VAL, INIT_VAL, INIT_VAL }
 	};
 
-
-
 	void updateState(int i, int j, int val) {
-		int temp  = state[i][j] ;
+		int temp = state[i][j];
 
 		if (temp == INIT_VAL) {
 			state[i][j] = val;
-			numberOfCellUpdated++ ;
-			return ;
+			numberOfCellUpdated++;
+			return;
 		}
 
 		System.out.println("invalid position, already filled!");
-		return  ;
+		return;
 
 	}
-
 
 	public void updateState(Position p, int symbol) {
-		updateState(p.getX(),p.getY(),symbol);
-		return ;
+		updateState(p.getX(), p.getY(), symbol);
+		return;
 
 	}
+
 	public void updateStateForced(Position p, int symbol) {
 		state[p.getX()][p.getY()] = symbol;
 	}
@@ -65,24 +63,28 @@ class Game {
 
 	@Override
 	public String toString() {
-		String res = "" ;
+		String stateAsString = "";
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
-				res+=state[i][j] + " ";
+				if (state[i][j] == Constants.INITIAL_MARK) {
+					stateAsString += "- ";
+				} else if (state[i][j] == Constants.PLAYER_AI_MARK)
+					stateAsString += "X ";
+				else if (state[i][j] == Constants.PLAYER_HUMAN_MARK)
+					stateAsString += "O ";
 			}
-			res += "\n" ;
+			stateAsString += "\n";
 		}
-		return res ;
+		return stateAsString;
 	}
 
-
 	public boolean equals(Game game) {
-		for (int i = 0  ; i < 3 ; i++) {
-			for(int j = 0 ; j < 3 ; j++) {
-				if(this.state[i][j]!=game.state[i][j])
-					return false ;
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				if (this.state[i][j] != game.state[i][j])
+					return false;
 			}
 		}
-		return true ;
+		return true;
 	}
 }
