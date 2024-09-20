@@ -25,7 +25,7 @@ public class Generator {
 
 	public Position generate(Game game) {
 
-		System.out.println("Generator.generate()");
+		// System.out.println("Generator.generate()");
 
 		categorizePositionsList(generatePositionList(game), game.state);
 
@@ -33,7 +33,7 @@ public class Generator {
 	}
 
 	private List<Position> generatePositionList(Game game) {
-		System.out.println("Generator.generatePositionList()");
+		// System.out.println("Generator.generatePositionList()");
 
 		Position position;
 
@@ -50,7 +50,7 @@ public class Generator {
 	}
 
 	public void categorizePositionsList(List<Position> positionList, final int currentState[][]) {
-		System.out.println("Generator.categorizePositionsList()");
+		// System.out.println("Generator.categorizePositionsList()");
 
 		// make a new game
 		Game game = new Game();
@@ -89,12 +89,12 @@ public class Generator {
 	}
 
 	private Position getBestPosition(Game game) {
-		System.out.println("Generator.getBestPosition()");
+		// System.out.println("Generator.getBestPosition()");
 
-		System.out.println("winningPositionList:"+winningPositionList);
-		System.out.println("preventivePositionList:"+preventivePositionList);
-		System.out.println("betterPositionList:"+betterPositionList);
-		System.out.println("somethingElse:"+somethingElse);
+		// System.out.println("winningPositionList:"+winningPositionList);
+		// System.out.println("preventivePositionList:"+preventivePositionList);
+		// System.out.println("betterPositionList:"+betterPositionList);
+		// System.out.println("somethingElse:"+somethingElse);
 
 		if (!winningPositionList.isEmpty())
 			return winningPositionList.pop();
