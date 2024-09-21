@@ -1,4 +1,4 @@
-package com.jk.game.ds;
+package game.pojo;
 
 public class DiagonalSum {
     private int sumOfD1;

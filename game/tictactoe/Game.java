@@ -1,7 +1,7 @@
-package com.jk.game;
+package game.tictactoe;
 
-import com.jk.game.ds.DiagonalSum;
-import com.jk.game.ds.Position;
+import game.pojo.DiagonalSum;
+import game.pojo.Position;
 
 class Game {
 

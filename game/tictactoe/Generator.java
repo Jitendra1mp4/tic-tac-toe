@@ -1,11 +1,11 @@
-package com.jk.game;
+package game.tictactoe;
 
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
 
-import com.jk.game.ds.Position;
+import game.pojo.Position;
 
 public class Generator {
 

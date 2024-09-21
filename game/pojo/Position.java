@@ -1,4 +1,4 @@
-package com.jk.game.ds;
+package game.pojo;
 public class Position {
     private int x;
     private int y;

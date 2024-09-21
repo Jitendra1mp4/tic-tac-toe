@@ -1,25 +1,10 @@
-package com.jk.game;
+package game.tictactoe;
 import java.util.Scanner;
 
-import com.jk.game.ds.Position;
-
-public class TicTacToe {
-
-	
-    public static void main(String args[]) {
-
-//    	boolean wantToPlay = true;
-//    	while(wantToPlay) {
-    		System.out.println("here is new game :)");
-    		new Play();
-//    	}
-    }
-}
+import game.pojo.Position;
 
 
-
-
-class Play {
+public class Play {
 	
 	private final int player1ID = Constants.PLAYER_AI ;
 	private final int player2ID = Constants.PLAYER_HUMAN ;
