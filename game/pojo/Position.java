@@ -1,9 +1,13 @@
 package game.pojo;
-public class Position {
+public class Position implements Comparable<Position> {
     private int x;
     private int y;
 
+    private int priority ;
+    
+    
     public Position(int position) {
+    	priority = 0 ; // default priority = 0 
         switch (position) {
             case 1:
                 x = 0;
@@ -64,9 +68,24 @@ public class Position {
         return y;
     }
 
+    public int getPriority() {
+    	return priority ;
+    }
+    
+    
+    public void setPriority(int priority) {
+    	this.priority = priority ;
+    }
+    
+    
 	@Override
 	public String toString() {
 		return "Position [x=" + x + ", y=" + y + "]";
+	}
+
+	@Override
+	public int compareTo(Position other) {
+		return Integer.compare(this.priority, other.priority);
 	}
 
     

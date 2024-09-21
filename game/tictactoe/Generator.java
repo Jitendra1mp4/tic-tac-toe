@@ -1,20 +1,24 @@
 package game.tictactoe;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Stack;
+import java.util.PriorityQueue;
 
 import game.pojo.Position;
+import game.tictactoe.Constants.PLAYER;
 
 public class Generator {
 
 	private static final int NUMBER_OF_CELLS = 9;
 
-	private Stack<Position> somethingElse;
+	private List<Position> humansBetterPosition ;
+	private PriorityQueue<Position> somethingElse;
 
 	public Generator() {
-		somethingElse = new Stack<Position>();
+		somethingElse = new PriorityQueue<Position>();
+		humansBetterPosition = new ArrayList<Position>() ;
 	}
 
 	public Position generate(Game game) {
@@ -56,13 +60,13 @@ public class Generator {
 
 			// if by applying that position AI wins it is winning position
 			game.updateState(position, Constants.PLAYER_AI_MARK);
-			if (Test.won(game, Constants.PLAYER_AI, position)) {
+			if (Test.won(game, Constants.PLAYER.AI, position)) {
 				return position ;
 			}
 
 			// if human can win by marking same position it would be preventivePosition
 			game.updateStateForced(position, Constants.PLAYER_HUMAN_MARK);
-			if (Test.won(game, Constants.PLAYER_HUMAN, position)) {
+			if (Test.won(game, Constants.PLAYER.HUMAN, position)) {
 				return position ;
 			}
 
@@ -70,24 +74,47 @@ public class Generator {
 			// position
 			game.updateStateForced(position, Constants.PLAYER_AI_MARK);
 			
-			if (Test.willAIWonInNext(game, position)) {
-
+			if (Test.willIWonInNextState(PLAYER.AI,game, position)) {
 				return position ;
 			} 
 			
+			game.updateStateForced(position, Constants.PLAYER_HUMAN_MARK);
+			if (Test.willIWonInNextState(PLAYER.HUMAN,game, position)) {
+				humansBetterPosition.add(position) ;
+			}
+			
+			
 			else {
-				somethingElse.push(position);
+				game.updateStateForced(position, Constants.PLAYER_AI_MARK);
+				
+				int priority = (-1)*Test.NumberOfOpenPostions(PLAYER.AI, game, position);
+				
+				System.out.println(position+" : "+priority);
+				
+				position.setPriority(priority);
+				
+				somethingElse.add(position);
 			}
 		}
 		
-		if (!somethingElse.isEmpty()) {
-			Position position = handleSomethingElse(game);
-			return position != null ? position : somethingElse.pop();
+		
+		if(!humansBetterPosition.isEmpty()) {
+			System.out.println("Generator.getBestPosition()");
+			Position hbf = humansBetterPosition.get(0);
+			System.out.println("hbf:"+hbf);
+			if ( hbf != null) {return hbf ;}
 		}
 
-		System.out.println("All stack are empty returning null");
-		return null;
-		
+		if (!somethingElse.isEmpty()) {
+//			Position position = handleSomethingElse(game);
+//			return position != null ? position : somethingElse.poll();
+			return somethingElse.poll() ;  
+		}
+
+		System.out.println("Game Over!");
+		System.out.println("NO position place left!");
+		System.exit(1) ;	
+		return null ;
 	}
 
 	
@@ -107,6 +134,10 @@ public class Generator {
 			if ((game.state[0][0] == Constants.PLAYER_HUMAN_MARK))
 				return new Position(7); 
 		}
+		
+		
+		
+		
 
 		return null;
 	}
