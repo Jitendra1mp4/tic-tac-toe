@@ -20,13 +20,10 @@ public class Play {
         System.out.println("initial game state:");
         System.out.println(game) ;
 
-//        System.out.println("AI's turn...");
-//        game.updateState(new Position(5), symbolP1);
-//                
-//        System.out.println("position set, now game is : ");
-//        System.out.println(game) ;
 
-        int i = 0;
+        System.out.println("To be first player press 1 othrwise 0: ");
+        int i = sc.nextInt() ;
+
         do {
 
         	boolean stateUpdated = false ;
