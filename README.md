@@ -1,8 +1,6 @@
 # Tic-Tac-Toe Game
 
 This is a simple Java-based implementation of the Tic-Tac-Toe game, designed for two players. Game declares a winner or a draw at the end.
-
-## Features
 - Win against computer in simple Tic-Tac-Toe.
 - Play Tic-Tac-Toe with Computer
 - Console-based interface
