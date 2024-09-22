@@ -21,7 +21,7 @@ public class Play {
         System.out.println(game) ;
 
 
-        System.out.println("To be first player press 1 othrwise 0: ");
+        System.out.println("To be first player press 1 otherwise 0: ");
         int i = sc.nextInt() ;
 
         do {
