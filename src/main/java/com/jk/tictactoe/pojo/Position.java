@@ -1,4 +1,4 @@
-package game.pojo;
+package com.jk.tictactoe.pojo;
 public class Position implements Comparable<Position> {
     private int x;
     private int y;

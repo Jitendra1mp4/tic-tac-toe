@@ -1,6 +1,6 @@
-package game;
+package com.jk.tictactoe;
 
-import game.tictactoe.Play;
+import com.jk.tictactoe.game.Play;
 
 public class Main {
 	    public static void main(String args[]) {

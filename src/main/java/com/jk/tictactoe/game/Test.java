@@ -1,8 +1,8 @@
-package game.tictactoe;
+package com.jk.tictactoe.game;
 
-import game.pojo.DiagonalSum;
-import game.pojo.Position;
-import game.tictactoe.Constants.PLAYER;
+import com.jk.tictactoe.game.Constants.PLAYER;
+import com.jk.tictactoe.pojo.DiagonalSum;
+import com.jk.tictactoe.pojo.Position;
 
 public class Test {
 
