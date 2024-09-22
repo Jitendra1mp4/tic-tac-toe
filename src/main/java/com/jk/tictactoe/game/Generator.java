@@ -1,4 +1,4 @@
-package game.tictactoe;
+package com.jk.tictactoe.game;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Stack;
 
-import game.pojo.Position;
-import game.tictactoe.Constants.PLAYER;
+import com.jk.tictactoe.game.Constants.PLAYER;
+import com.jk.tictactoe.pojo.Position;
 
 public class Generator {
 

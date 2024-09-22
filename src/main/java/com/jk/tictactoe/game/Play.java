@@ -1,8 +1,8 @@
-package game.tictactoe;
+package com.jk.tictactoe.game;
 import java.util.Scanner;
 
-import game.pojo.Position;
-import game.tictactoe.Constants.PLAYER;
+import com.jk.tictactoe.game.Constants.PLAYER;
+import com.jk.tictactoe.pojo.Position;
 
 
 public class Play {
