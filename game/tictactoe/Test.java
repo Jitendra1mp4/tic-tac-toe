@@ -34,7 +34,7 @@ public class Test {
 		}
 
 		
-		final boolean winningCondtions[] = {
+		final boolean winningConditions[] = {
 				winningCondition1, 
 				winningCondition2,
 				winningCondition3,
@@ -44,7 +44,7 @@ public class Test {
 
 		int numberOfWinningConditions = 0 ;
 		
-	     for (boolean wc : winningCondtions) {
+	     for (boolean wc : winningConditions) {
 	    	 if (wc) numberOfWinningConditions++ ;
 	     }
 		
@@ -116,4 +116,12 @@ public static int NumberOfOpenPostions(Constants.PLAYER player,Game game, Positi
 		
 		return numberOfOpenGroups ;
 	}
+
+
+public static boolean diagonalDangerForAi(Game game) {
+	final DiagonalSum diagonalSum = game.getDiagonalSum();
+	return  game.state[1][1] == Constants.PLAYER_AI_MARK && game.numberOfCellUpdated ==3 && (diagonalSum.getSumOfD1() == Constants.DOUBLE_DANGER_SUM_FOR_AI ||   
+			diagonalSum.getSumOfD2() == Constants.DOUBLE_DANGER_SUM_FOR_AI ) ;	
+	
+}
 }

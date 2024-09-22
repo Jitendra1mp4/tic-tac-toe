@@ -20,7 +20,7 @@ public class Constants {
     public final static int PLAYER_AI_OPEN_POSITION_SUM = Constants.PLAYER_AI_MARK + INITIAL_MARK*2 ;
     public final static int PLAYER_HUMAN_OPEN_POSITION_SUM = Constants.PLAYER_HUMAN_MARK  + INITIAL_MARK*2 ;
 	
-    
+    public final static int DOUBLE_DANGER_SUM_FOR_AI =  PLAYER_HUMAN_MARK * 2 + PLAYER_AI_MARK ;
     enum PLAYER{
     	 
     	AI(1), HUMAN(2);

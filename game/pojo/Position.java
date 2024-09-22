@@ -80,7 +80,7 @@ public class Position implements Comparable<Position> {
     
 	@Override
 	public String toString() {
-		return "Position [x=" + x + ", y=" + y + "]";
+		return "Position [x=" + x + ", y=" + y + "]"+",priority:"+priority;
 	}
 
 	@Override
