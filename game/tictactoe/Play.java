@@ -34,7 +34,7 @@ public class Play {
                 System.out.println("AI's turn...");
           
                 Generator generator = new Generator();
-                Position p = generator.generate(game);
+                Position p = generator.searchAndGetPosition(game);
                 
                 stateUpdated = game.updateState(p,  Constants.PLAYER_AI_MARK);
                 

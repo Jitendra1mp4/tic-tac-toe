@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.PriorityQueue;
+import java.util.Stack;
 
 import game.pojo.Position;
 import game.tictactoe.Constants.PLAYER;
@@ -13,19 +14,30 @@ public class Generator {
 
 	private static final int NUMBER_OF_CELLS = 9;
 
+	private Stack<Position> winningPositionList;
+	private Stack<Position> preventivePositionList;
+	private Stack<Position> aiBetterPositionList;
+
 	private List<Position> humansBetterPosition ;
 	private PriorityQueue<Position> somethingElse;
 
+
 	public Generator() {
+		winningPositionList = new Stack<>();
+		preventivePositionList = new Stack<>();
+		aiBetterPositionList = new Stack<>();
+		
 		somethingElse = new PriorityQueue<Position>();
 		humansBetterPosition = new ArrayList<Position>() ;
 	}
 
-	public Position generate(Game game) {
+	public Position searchAndGetPosition(Game game) {
 
 		// System.out.println("Generator.generate()");
 
-		return getBestPosition(generatePositionList(game), game.state);
+		categorizePositions(generatePositionList(game), game.state) ; 
+	
+		return getBestPosition(game) ;
 	}
 
 	private List<Position> generatePositionList(Game game) {
@@ -45,7 +57,7 @@ public class Generator {
 		return positionList;
 	}
 
-	public Position getBestPosition(List<Position> positionList, final int currentState[][]) {
+	public void categorizePositions(List<Position> positionList, final int currentState[][]) {
 		// System.out.println("Generator.categorizePositionsList()");
 
 		// make a new game
@@ -61,13 +73,17 @@ public class Generator {
 			// if by applying that position AI wins it is winning position
 			game.updateState(position, Constants.PLAYER_AI_MARK);
 			if (Test.won(game, Constants.PLAYER.AI, position)) {
-				return position ;
+//				return position ;
+				winningPositionList.push(position);
+				continue;
 			}
 
 			// if human can win by marking same position it would be preventivePosition
 			game.updateStateForced(position, Constants.PLAYER_HUMAN_MARK);
 			if (Test.won(game, Constants.PLAYER.HUMAN, position)) {
-				return position ;
+//				return position ;
+				preventivePositionList.push(position);
+				continue;
 			}
 
 			// if by applying position AI's win is confirm in next inn it is better
@@ -75,12 +91,15 @@ public class Generator {
 			game.updateStateForced(position, Constants.PLAYER_AI_MARK);
 			
 			if (Test.willIWonInNextState(PLAYER.AI,game, position)) {
-				return position ;
+				aiBetterPositionList.push(position);
+				continue;
+//				return position ;
 			} 
 			
 			game.updateStateForced(position, Constants.PLAYER_HUMAN_MARK);
 			if (Test.willIWonInNextState(PLAYER.HUMAN,game, position)) {
 				humansBetterPosition.add(position) ;
+				continue ;
 			}
 			
 			
@@ -98,25 +117,62 @@ public class Generator {
 		}
 		
 		
-		if(!humansBetterPosition.isEmpty()) {
-			System.out.println("Generator.getBestPosition()");
-			Position hbf = humansBetterPosition.get(0);
-			System.out.println("hbf:"+hbf);
-			if ( hbf != null) {return hbf ;}
+//		if(!humansBetterPosition.isEmpty()) {
+//			System.out.println("Generator.getBestPosition()");
+//			Position hbf = humansBetterPosition.get(0);
+//			System.out.println("hbf:"+hbf);
+//			if ( hbf != null) {return hbf ;}
+//		}
+
+//		if (!somethingElse.isEmpty()) {
+////			Position position = handleSomethingElse(game);
+////			return position != null ? position : somethingElse.poll();
+//			return somethingElse.poll() ;  
+//		}
+//
+//		System.out.println("Game Over!");
+//		System.out.println("NO position place left!");
+//		System.exit(1) ;	
+//		return null ;
+	}
+
+	
+	
+	
+	private Position getBestPosition(Game game) {
+		// System.out.println("Generator.getBestPosition()");
+
+		// System.out.println("winningPositionList:"+winningPositionList);
+		// System.out.println("preventivePositionList:"+preventivePositionList);
+		// System.out.println("betterPositionList:"+betterPositionList);
+		// System.out.println("somethingElse:"+somethingElse);
+
+		if (!winningPositionList.isEmpty())
+			return winningPositionList.pop();
+		
+		else if (!preventivePositionList.isEmpty())
+			return preventivePositionList.pop();
+		
+		else if (!aiBetterPositionList.isEmpty())
+			return aiBetterPositionList.pop();
+		
+		else if (!humansBetterPosition.isEmpty()) 
+			return humansBetterPosition.get(0) ;
+		
+
+		else if (!somethingElse.isEmpty()) {
+			Position p = handleSomethingElse(game);
+			return p != null ? p : somethingElse.poll();
 		}
 
-		if (!somethingElse.isEmpty()) {
-//			Position position = handleSomethingElse(game);
-//			return position != null ? position : somethingElse.poll();
-			return somethingElse.poll() ;  
-		}
-
-		System.out.println("Game Over!");
 		System.out.println("NO position place left!");
+		System.out.println("Game Over!");
 		System.exit(1) ;	
 		return null ;
 	}
-
+	
+	
+	
 	
 	
 	private Position handleSomethingElse(Game game) {
