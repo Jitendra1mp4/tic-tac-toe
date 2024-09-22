@@ -8,12 +8,8 @@ This is a simple Java-based implementation of the Tic-Tac-Toe game, designed for
 - Console-based interface
 
 ## How to Run
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/Jitendra1mp4/tic-tac-toe.git
-   ```
-2. Compile the code with javac.
-3. Run the game with java
+1. Download letest package `tictactoe-*.jar` file from release [https://github.com/Jitendra1mp4/tic-tac-toe/releases]
+2. run jar file with `java -jar tictactoe-0.0.1-SNAPSHOT.jar` (make sure you have java version 17 or greater)
 
 ## How to Play
 
