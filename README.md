@@ -17,7 +17,7 @@ This is a simple Java-based implementation of the Tic-Tac-Toe game, designed for
 
 ## How to Play
 
-1. To be first player press 1 othrwise 0:
+1. To be first player press 1 othrwise 0.
 2. The game board is represented as a 3x3 grid, with positions numbered 1 to 9:
    ```
    1 | 2 | 3
