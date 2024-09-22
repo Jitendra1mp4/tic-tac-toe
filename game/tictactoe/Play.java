@@ -2,19 +2,15 @@ package game.tictactoe;
 import java.util.Scanner;
 
 import game.pojo.Position;
+import game.tictactoe.Constants.PLAYER;
 
 
 public class Play {
 	
-	private final int player1ID = Constants.PLAYER_AI ;
-	private final int player2ID = Constants.PLAYER_HUMAN ;
-	final int symbolP1 = Constants.PLAYER_AI_MARK;
-	final int symbolP2 = Constants.PLAYER_HUMAN_MARK;
 
     public Play() {
 
         Scanner sc = new Scanner(System.in);
-
 
         Game game = new Game();
 
@@ -24,27 +20,25 @@ public class Play {
         System.out.println("initial game state:");
         System.out.println(game) ;
 
-        System.out.println("AI's turn...");
-        game.updateState(new Position(5), symbolP1);
-                
-        System.out.println("position set, now game is : ");
-        System.out.println(game) ;
 
-        int i = 1;
+        System.out.println("To be first player press 1 othrwise 0: ");
+        int i = sc.nextInt() ;
+
         do {
 
+        	boolean stateUpdated = false ;
             if (i % 2 == 0) { 
                 System.out.println("AI's turn...");
           
                 Generator generator = new Generator();
-                Position p = generator.generate(game);
+                Position p = generator.searchAndGetPosition(game);
                 
-                game.updateState(p, symbolP1);
+                stateUpdated = game.updateState(p,  Constants.PLAYER_AI_MARK);
                 
                 System.out.println("position set, now game is : ");
                 System.out.println(game) ;
                 
-                if(Test.won(game,player1ID, p)) {
+                if(Test.won(game,PLAYER.AI, p)) {
                     System.out.println("AI WON!");
                     break ;
                 }
@@ -56,18 +50,18 @@ public class Play {
                 
                 
                 Position p = new Position(sc.nextInt());
-                game.updateState(p, symbolP2);
+                stateUpdated = game.updateState(p, Constants.PLAYER_HUMAN_MARK);
                 
                 
                 System.out.println(game) ;
                 
-                if(Test.won(game,player2ID, p)) {
+                if(Test.won(game,PLAYER.HUMAN, p)) {
                     System.out.println("YOU WON!");
                     break ;
                 }
             }
 
-            i++;
+            if (stateUpdated) i++ ;
         } while (game.numberOfCellUpdated<9);
 
         sc.nextLine();

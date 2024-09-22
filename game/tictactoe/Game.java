@@ -18,24 +18,22 @@ class Game {
 			{ INIT_VAL, INIT_VAL, INIT_VAL }
 	};
 
-	void updateState(int i, int j, int val) {
+	boolean updateState(int i, int j, int val) {
 		int temp = state[i][j];
 
 		if (temp == INIT_VAL) {
 			state[i][j] = val;
 			numberOfCellUpdated++;
-			return;
+			return true;
 		}
 
-		System.out.println("invalid position, already filled!");
-		return;
+		System.out.println("Invalid position,try again!");
+		return false;
 
 	}
 
-	public void updateState(Position p, int symbol) {
-		updateState(p.getX(), p.getY(), symbol);
-		return;
-
+	public boolean updateState(Position p, int symbol) {
+			return updateState(p.getX(), p.getY(), symbol);
 	}
 
 	public void updateStateForced(Position p, int symbol) {
