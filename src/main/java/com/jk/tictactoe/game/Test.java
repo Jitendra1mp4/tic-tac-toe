@@ -6,6 +6,10 @@ import com.jk.tictactoe.pojo.Position;
 
 public class Test {
 
+	public static boolean handleStartWithSideCenter(Game game) {
+		return game.numberOfCellUpdated==1 && game.state[1][1]==Constants.INITIAL_MARK;
+	}
+	
 	
 	//supposed to called after updating pseudo state, to test whether that will result in WIN in NEXT INN.
 	public static boolean willIWonInNextState(Constants.PLAYER player,Game game, Position position) {

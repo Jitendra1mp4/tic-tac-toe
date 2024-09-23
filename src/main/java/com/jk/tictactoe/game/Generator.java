@@ -34,10 +34,17 @@ public class Generator {
 
 		// System.out.println("Generator.generate()");
 
+	    if(Test.handleStartWithSideCenter(game)) {
+	    	System.out.println("returned by handleStartWithSideCenter");
+	    	return new Position(5) ;
+	    }
+
 		categorizePositions(generatePositionList(game), game.state) ; 
 	
 		return getBestPosition(game) ;
 	}
+
+	
 
 	private List<Position> generatePositionList(Game game) {
 		// System.out.println("Generator.generatePositionList()");
