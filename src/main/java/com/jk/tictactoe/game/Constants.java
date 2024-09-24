@@ -1,26 +1,26 @@
 package com.jk.tictactoe.game;
 
 public class Constants {
-	public final static int INITIAL_MARK = 8 ;
-	public final static int MATRIX_SIZE = 3 ;
+	public static final int INITIAL_MARK = 8 ;
+	public static final int MATRIX_SIZE = 3 ;
+	
 
 	public static final int PLAYER_AI = 1;
 	public static final int PLAYER_HUMAN = 2;
 
-	public final static int PLAYER_AI_MARK = 1 ;
-	public final static int PLAYER_HUMAN_MARK = 2 ;
+	public static final int PLAYER_AI_MARK = 1 ;
+	public static final int PLAYER_HUMAN_MARK = 2 ;
 	
-	public final static int PLAYER_AI_WINNIG_SUM = 3 ;
-	public final static int PLAYER_HUMAN_WINNING_SUM = 6 ;
+	public static final int PLAYER_AI_WINNING_SUM = 3 ;
+	public static final int PLAYER_HUMAN_WINNING_SUM = 6 ;
 	
+    public static final int NEXT_PLAYER_AI_WINNING_SUM = Constants.PLAYER_AI_MARK * 2 + INITIAL_MARK ;
+    public static final int NEXT_PLAYER_HUMAN_WINNING_SUM = Constants.PLAYER_HUMAN_MARK * 2 + INITIAL_MARK ;
 	
-    public final static int NEXT_PLAYER_AI_WINNIG_SUM = Constants.PLAYER_AI_MARK * 2 + INITIAL_MARK ;
-    public final static int NEXT_PLAYER_HUMAN_WINNING_SUM = Constants.PLAYER_HUMAN_MARK * 2 + INITIAL_MARK ;
+    public static final int PLAYER_AI_OPEN_POSITION_SUM = Constants.PLAYER_AI_MARK + INITIAL_MARK*2 ;
+    public static final int PLAYER_HUMAN_OPEN_POSITION_SUM = Constants.PLAYER_HUMAN_MARK  + INITIAL_MARK*2 ;
 	
-    public final static int PLAYER_AI_OPEN_POSITION_SUM = Constants.PLAYER_AI_MARK + INITIAL_MARK*2 ;
-    public final static int PLAYER_HUMAN_OPEN_POSITION_SUM = Constants.PLAYER_HUMAN_MARK  + INITIAL_MARK*2 ;
-	
-    public final static int DOUBLE_DANGER_SUM_FOR_AI =  PLAYER_HUMAN_MARK * 2 + PLAYER_AI_MARK ;
+    public static final int DOUBLE_DANGER_SUM_FOR_AI =  PLAYER_HUMAN_MARK * 2 + PLAYER_AI_MARK ;
     
     public enum PLAYER{
    	 
