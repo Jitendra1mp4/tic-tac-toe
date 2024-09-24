@@ -1,13 +1,17 @@
 package com.jk.tictactoe.pojo;
+
+import com.jk.tictactoe.game.Constants.PRIORITY;
+
 public class Position implements Comparable<Position> {
     private int x;
     private int y;
 
-    private int priority ;
+
+    private PRIORITY priority ;
     
     
     public Position(int position) {
-    	priority = 0 ; // default priority = 0 
+    	priority = PRIORITY.fromNumber(0) ; // default priority = 0 
         switch (position) {
             case 1:
                 x = 0;
@@ -68,12 +72,12 @@ public class Position implements Comparable<Position> {
         return y;
     }
 
-    public int getPriority() {
+    public PRIORITY getPriority() {
     	return priority ;
     }
     
     
-    public void setPriority(int priority) {
+    public void setPriority(PRIORITY priority) {
     	this.priority = priority ;
     }
     
@@ -85,7 +89,7 @@ public class Position implements Comparable<Position> {
 
 	@Override
 	public int compareTo(Position other) {
-		return Integer.compare(this.priority, other.priority);
+		return Integer.compare(this.priority.getPriority(), other.priority.getPriority());
 	}
 
     
