@@ -1,11 +1,9 @@
 package com.jk.tictactoe.game;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.PriorityQueue;
-import java.util.Stack;
 
 import com.jk.tictactoe.game.Constants.PLAYER;
 import com.jk.tictactoe.game.Constants.PRIORITY;
@@ -24,8 +22,6 @@ private static final int NUMBER_OF_CELLS = 9;
 
 	public Position searchAndGetPosition(Game game) {
 
-		// System.out.println("Generator.generate()");
-		
 		   if(Test.handleStartWithSideCenter(game)) {
 		    	System.out.println("returned by handleStartWithSideCenter");
 		    	return new Position(5) ;
@@ -37,7 +33,6 @@ private static final int NUMBER_OF_CELLS = 9;
 	}
 
 	private List<Position> generatePositionList(Game game) {
-		// System.out.println("Generator.generatePositionList()");
 
 		Position position;
 
@@ -54,7 +49,6 @@ private static final int NUMBER_OF_CELLS = 9;
 	}
 
 	public void assignPrioritiesToPositions(List<Position> positionList, final int currentState[][]) {
-		// System.out.println("Generator.categorizePositionsList()");
 
 		// make a new game
 		Game game = new Game();
