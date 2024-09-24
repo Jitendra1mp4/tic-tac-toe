@@ -7,7 +7,7 @@ import com.jk.tictactoe.pojo.Position;
 public class Test {
 
 	public static boolean handleStartWithSideCenter(Game game) {
-		return game.numberOfCellUpdated==1 && game.state[1][1]==Constants.INITIAL_MARK;
+		return game.getNumberOfCellUpdated()==1 && game.state[1][1]==Constants.INITIAL_MARK;
 	}
 	
 	

@@ -91,7 +91,7 @@ private static final int NUMBER_OF_CELLS = 9;
 				position.setPriority(PRIORITY.AI_WIN_IN_NEXT_STATE);
 				positionQueue.add(position) ;
 				
-				System.out.println("priority set: "+position);
+				System.out.println("set: "+position);
 				continue;
 			} 
 			
@@ -147,7 +147,7 @@ private static final int NUMBER_OF_CELLS = 9;
 	}
 		
 	private static int[][] getDeepCopy(int matrix[][]) {
-		int copy[][] = new int[3][];
+		int[][] copy = new int[3][];
 
 		for (int i = 0; i < matrix.length; i++) { // *state.length returns number of rows
 			copy[i] = matrix[i].clone();

@@ -5,14 +5,18 @@ import com.jk.tictactoe.pojo.Position;
 
 class Game {
 
-	public static final String PLAYER_HUMAN_SYMBOL = "O ";
-	public static final String PLAYER_AI_SYMBOL = "X ";
-	public static final String INITIAL_SYMBOL = "- ";
 	public static final int INIT_VAL = Constants.INITIAL_MARK;
 	
-	public int numberOfCellUpdated = 0;
-
-	int state[][] = new int[][] {
+	private int numberOfCellUpdated  ;
+	private boolean startedByHuman ;
+	
+	
+	Game() {
+		setNumberOfCellUpdated(0); 
+	}
+	
+	
+	int[][] state = new int[][] {
 			{ INIT_VAL, INIT_VAL, INIT_VAL },
 			{ INIT_VAL, INIT_VAL, INIT_VAL },
 			{ INIT_VAL, INIT_VAL, INIT_VAL }
@@ -23,7 +27,7 @@ class Game {
 
 		if (temp == INIT_VAL) {
 			state[i][j] = val;
-			numberOfCellUpdated++;
+			setNumberOfCellUpdated(getNumberOfCellUpdated() + 1);
 			return true;
 		}
 
@@ -68,31 +72,52 @@ class Game {
 
 	@Override
 	public String toString() {
-		String stateAsString = "";
+		StringBuilder stateAsString = new StringBuilder("\n");
+		
+		String playerAiSymbol = "";
+		String playerHumanSymbol = "" ;
+		
+		if (startedByHuman){
+			playerHumanSymbol = Constants.SYMBOL_X ;
+			playerAiSymbol = Constants.SYMBOL_O ;
+		}
+		else {
+			playerAiSymbol = Constants.SYMBOL_X ;
+			playerHumanSymbol = Constants.SYMBOL_O ;
+		}
+		
+		
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
 				
 				if (state[i][j] == Constants.INITIAL_MARK) {
-					stateAsString += INITIAL_SYMBOL;
+					stateAsString.append(Constants.INITIAL_SYMBOL);
 					
 				} else if (state[i][j] == Constants.PLAYER_AI_MARK)
-					stateAsString += PLAYER_AI_SYMBOL;
+					stateAsString.append(playerAiSymbol);
 				
 				else if (state[i][j] == Constants.PLAYER_HUMAN_MARK)
-					stateAsString += PLAYER_HUMAN_SYMBOL;
+					stateAsString.append(playerHumanSymbol);
 			}
-			stateAsString += "\n";
+			stateAsString.append("\n\n");
 		}
-		return stateAsString;
+		return stateAsString.toString(); 
 	}
 
-	public boolean equals(Game game) {
-		for (int i = 0; i < 3; i++) {
-			for (int j = 0; j < 3; j++) {
-				if (this.state[i][j] != game.state[i][j])
-					return false;
-			}
-		}
-		return true;
+
+	public int getNumberOfCellUpdated() {
+		return numberOfCellUpdated;
+	}
+
+	public void setNumberOfCellUpdated(int numberOfCellUpdated) {
+		this.numberOfCellUpdated = numberOfCellUpdated;
+	}
+
+	public boolean isStartedByHuman() {
+		return startedByHuman;
+	}
+
+	public void setStartedByHuman(boolean startedByHuman) {
+		this.startedByHuman = startedByHuman;
 	}
 }

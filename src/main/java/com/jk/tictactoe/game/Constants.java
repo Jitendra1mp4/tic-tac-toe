@@ -4,6 +4,9 @@ public class Constants {
 	public static final int INITIAL_MARK = 8 ;
 	public static final int MATRIX_SIZE = 3 ;
 	
+	public static final String INITIAL_SYMBOL = "  - ";
+	public static final String SYMBOL_O = "  O ";
+	public static final String SYMBOL_X = "  X ";
 
 	public static final int PLAYER_AI = 1;
 	public static final int PLAYER_HUMAN = 2;
