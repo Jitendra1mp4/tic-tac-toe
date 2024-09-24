@@ -56,15 +56,15 @@ public class Constants {
     	
     	LOWEST(0); 
     	
-    	private int priority ;
+    	private int priorityID ;
 		PRIORITY(int priority) {
-			this.priority = priority;
+			this.priorityID = priority;
 		}
 		
 		
 		
-		public int getPriority() {
-			return priority;
+		public int getPriorityID() {
+			return priorityID;
 		}
 
 		public static PRIORITY fromNumber(int number) {
@@ -72,12 +72,12 @@ public class Constants {
 			if (number >= -10 && number <= 0) {
 				
 				for (PRIORITY priority : PRIORITY.values()) {
-					if (priority.priority == number) 
+					if (priority.priorityID == number) 
 							return  priority ;
 				}
 			}
 			
-			System.out.println("invalid number provided to get priority!");
+			System.out.println("invalid number provided to get priorityID!");
 			return null ;
 		}
 
