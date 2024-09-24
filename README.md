@@ -25,11 +25,11 @@ This is a simple Java-based implementation of the Tic-Tac-Toe game, designed for
 
 4. For example if you enter `4` game will look like this :
 
-  ```
-  -  -  -
-  O  -  -
-  -  -  -
-  ```
+     ```
+     -  -  -
+     O  -  -
+     -  -  -
+     ```
 
 5. The game will check for a winner or a draw after each turn. Continue until the game ends.
 
