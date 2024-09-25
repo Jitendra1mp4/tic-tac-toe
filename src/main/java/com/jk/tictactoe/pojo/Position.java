@@ -89,7 +89,7 @@ public class Position implements Comparable<Position> {
 
 	@Override
 	public int compareTo(Position other) {
-		return Integer.compare(this.priority.getPriority(), other.priority.getPriority());
+		return Integer.compare(this.priority.getPriorityID(), other.priority.getPriorityID());
 	}
 
     
