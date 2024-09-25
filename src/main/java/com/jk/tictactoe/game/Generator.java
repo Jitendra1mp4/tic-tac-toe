@@ -48,7 +48,7 @@ private static final int NUMBER_OF_CELLS = 9;
 		return positionList;
 	}
 
-	public void assignPrioritiesToPositions(List<Position> positionList, final int currentState[][]) {
+	public void assignPrioritiesToPositions(List<Position> positionList, final int[][] currentState) {
 
 		// make a new game
 		Game game = new Game();
@@ -140,7 +140,7 @@ private static final int NUMBER_OF_CELLS = 9;
 		return new Position(4) ;
 	}
 		
-	private static int[][] getDeepCopy(int matrix[][]) {
+	private static int[][] getDeepCopy(int[][] matrix) {
 		int[][] copy = new int[3][];
 
 		for (int i = 0; i < matrix.length; i++) { // *state.length returns number of rows
