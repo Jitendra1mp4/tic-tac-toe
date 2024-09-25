@@ -10,7 +10,7 @@ designed to play with AI. Game declares a winner or a draw at the end.
 1. Download latest package `tictactoe-*-SNAPSHOT.jar` file from release [https://github.com/Jitendra1mp4/tic-tac-toe/releases]
 
 
-2. run jar file with `java -jar tictactoe-*-SNAPSHOT.jar` (make sure you have java version 17 or greater)
+2. run jar file with `java -jar tictactoe-*-SNAPSHOT.jar` (make sure you have java version 11 or higher)
 
 ## How to Play
 
