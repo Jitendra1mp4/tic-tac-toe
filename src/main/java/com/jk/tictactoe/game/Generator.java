@@ -1,11 +1,9 @@
 package com.jk.tictactoe.game;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.PriorityQueue;
-import java.util.Stack;
 
 import com.jk.tictactoe.game.Constants.PLAYER;
 import com.jk.tictactoe.game.Constants.PRIORITY;
@@ -24,8 +22,6 @@ private static final int NUMBER_OF_CELLS = 9;
 
 	public Position searchAndGetPosition(Game game) {
 
-		// System.out.println("Generator.generate()");
-		
 		   if(Test.handleStartWithSideCenter(game)) {
 		    	System.out.println("returned by handleStartWithSideCenter");
 		    	return new Position(5) ;
@@ -37,7 +33,6 @@ private static final int NUMBER_OF_CELLS = 9;
 	}
 
 	private List<Position> generatePositionList(Game game) {
-		// System.out.println("Generator.generatePositionList()");
 
 		Position position;
 
@@ -53,8 +48,7 @@ private static final int NUMBER_OF_CELLS = 9;
 		return positionList;
 	}
 
-	public void assignPrioritiesToPositions(List<Position> positionList, final int currentState[][]) {
-		// System.out.println("Generator.categorizePositionsList()");
+	public void assignPrioritiesToPositions(List<Position> positionList, final int[][] currentState) {
 
 		// make a new game
 		Game game = new Game();
@@ -80,7 +74,7 @@ private static final int NUMBER_OF_CELLS = 9;
 				position.setPriority(PRIORITY.PREVENT_HUMAN_TO_WIN);
 				positionQueue.add(position) ;
 				
-				System.out.println("priority set: "+position);
+				System.out.println("set: "+position);
 				continue;
 			}
 
@@ -91,7 +85,7 @@ private static final int NUMBER_OF_CELLS = 9;
 				position.setPriority(PRIORITY.AI_WIN_IN_NEXT_STATE);
 				positionQueue.add(position) ;
 				
-				System.out.println("priority set: "+position);
+				System.out.println("set: "+position);
 				continue;
 			} 
 			
@@ -100,7 +94,7 @@ private static final int NUMBER_OF_CELLS = 9;
 				position.setPriority(PRIORITY.HUMAN_WIN_IN_NEXT_STATE);
 				positionQueue.add(position) ;
 				
-				System.out.println("priority set: "+position);
+				System.out.println("set: "+position);
 				continue ;
 			}
 					
@@ -112,7 +106,7 @@ private static final int NUMBER_OF_CELLS = 9;
 				position.setPriority(PRIORITY.fromNumber(priority));
 				positionQueue.add(position) ;
 
-				System.out.println("priority set: "+position);
+				System.out.println("set: "+position);
 			}
 		}
 	
@@ -146,8 +140,8 @@ private static final int NUMBER_OF_CELLS = 9;
 		return new Position(4) ;
 	}
 		
-	private static int[][] getDeepCopy(int matrix[][]) {
-		int copy[][] = new int[3][];
+	private static int[][] getDeepCopy(int[][] matrix) {
+		int[][] copy = new int[3][];
 
 		for (int i = 0; i < matrix.length; i++) { // *state.length returns number of rows
 			copy[i] = matrix[i].clone();

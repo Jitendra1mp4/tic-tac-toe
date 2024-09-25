@@ -7,7 +7,7 @@ import com.jk.tictactoe.pojo.Position;
 public class Test {
 
 	public static boolean handleStartWithSideCenter(Game game) {
-		return game.numberOfCellUpdated==1 && game.state[1][1]==Constants.INITIAL_MARK;
+		return game.getNumberOfCellUpdated()==1 && game.state[1][1]==Constants.INITIAL_MARK;
 	}
 	
 	
@@ -23,10 +23,10 @@ public class Test {
 		
 		
 		if (player == PLAYER.AI) {
-			winningCondition1 = game.getRowSum(position.getX()) == Constants.NEXT_PLAYER_AI_WINNIG_SUM; // false 
-			winningCondition2 = game.getColSum(position.getY()) == Constants.NEXT_PLAYER_AI_WINNIG_SUM; // false
-			winningCondition3 = diagonalSum.getSumOfD1() == Constants.NEXT_PLAYER_AI_WINNIG_SUM;      // true
-			winningCondition4 = diagonalSum.getSumOfD2() == Constants.NEXT_PLAYER_AI_WINNIG_SUM;	   // false
+			winningCondition1 = game.getRowSum(position.getX()) == Constants.NEXT_PLAYER_AI_WINNING_SUM; // false 
+			winningCondition2 = game.getColSum(position.getY()) == Constants.NEXT_PLAYER_AI_WINNING_SUM; // false
+			winningCondition3 = diagonalSum.getSumOfD1() == Constants.NEXT_PLAYER_AI_WINNING_SUM;      // true
+			winningCondition4 = diagonalSum.getSumOfD2() == Constants.NEXT_PLAYER_AI_WINNING_SUM;	   // false
 			
 			
 			
@@ -63,10 +63,10 @@ public class Test {
 		final DiagonalSum diagonalSum = game.getDiagonalSum();
 		
 		if (player == PLAYER.AI) {
-			return (rowSum == Constants.PLAYER_AI_WINNIG_SUM // TODO:replace with constants.Winn
-					|| colSum == Constants.PLAYER_AI_WINNIG_SUM
-					|| diagonalSum.getSumOfD1() == Constants.PLAYER_AI_WINNIG_SUM
-					|| diagonalSum.getSumOfD2() == Constants.PLAYER_AI_WINNIG_SUM);
+			return (rowSum == Constants.PLAYER_AI_WINNING_SUM // TODO:replace with constants.Winn
+					|| colSum == Constants.PLAYER_AI_WINNING_SUM
+					|| diagonalSum.getSumOfD1() == Constants.PLAYER_AI_WINNING_SUM
+					|| diagonalSum.getSumOfD2() == Constants.PLAYER_AI_WINNING_SUM);
 		} else {
 			return (rowSum == Constants.PLAYER_HUMAN_WINNING_SUM
 					|| colSum == Constants.PLAYER_HUMAN_WINNING_SUM
@@ -124,7 +124,7 @@ public static int NumberOfOpenPostions(Constants.PLAYER player,Game game, Positi
 
 public static boolean diagonalDangerForAi(Game game) {
 	final DiagonalSum diagonalSum = game.getDiagonalSum();
-	return  game.state[1][1] == Constants.PLAYER_AI_MARK && game.numberOfCellUpdated ==3 && (diagonalSum.getSumOfD1() == Constants.DOUBLE_DANGER_SUM_FOR_AI ||   
+	return  game.state[1][1] == Constants.PLAYER_AI_MARK && game.getNumberOfCellUpdated() ==3 && (diagonalSum.getSumOfD1() == Constants.DOUBLE_DANGER_SUM_FOR_AI ||   
 			diagonalSum.getSumOfD2() == Constants.DOUBLE_DANGER_SUM_FOR_AI ) ;	
 	
 }
