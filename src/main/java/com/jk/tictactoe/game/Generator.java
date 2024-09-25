@@ -74,7 +74,7 @@ private static final int NUMBER_OF_CELLS = 9;
 				position.setPriority(PRIORITY.PREVENT_HUMAN_TO_WIN);
 				positionQueue.add(position) ;
 				
-				System.out.println("priority set: "+position);
+				System.out.println("set: "+position);
 				continue;
 			}
 
@@ -94,7 +94,7 @@ private static final int NUMBER_OF_CELLS = 9;
 				position.setPriority(PRIORITY.HUMAN_WIN_IN_NEXT_STATE);
 				positionQueue.add(position) ;
 				
-				System.out.println("priority set: "+position);
+				System.out.println("set: "+position);
 				continue ;
 			}
 					
@@ -106,7 +106,7 @@ private static final int NUMBER_OF_CELLS = 9;
 				position.setPriority(PRIORITY.fromNumber(priority));
 				positionQueue.add(position) ;
 
-				System.out.println("priority set: "+position);
+				System.out.println("set: "+position);
 			}
 		}
 	
